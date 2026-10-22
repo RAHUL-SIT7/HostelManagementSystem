@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Hostel Management System login demo" />
+    <title>Hostel Management System | Sign in</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script src="assets/js/login.js" defer></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="welcome-panel" aria-label="Welcome">
+        <div class="brand-mark" aria-hidden="true">H</div>
+        <p class="eyebrow">SYMBIOSIS HOSTEL MANAGEMENT SYSTEM</p>
+        <h1>Your hostel,<br /><span>made simpler.</span></h1>
+        <p class="welcome-copy">
+          A single place to manage hostel services, room information and student
+          support.
+        </p>
+        <div class="feature-list">
+          <div class="feature">
+            <span class="feature-icon" aria-hidden="true">✓</span
+            ><span>Room and hostel services</span>
+          </div>
+          <div class="feature">
+            <span class="feature-icon" aria-hidden="true">✓</span
+            ><span>Student account access</span>
+          </div>
+          <div class="feature">
+            <span class="feature-icon" aria-hidden="true">✓</span
+            ><span>Clear, simple dashboard</span>
+          </div>
+        </div>
+        <p class="panel-footnote">Student-focused · Simple · Responsive</p>
+      </section>
+
+      <section class="login-panel" aria-labelledby="login-title">
+        <div class="mobile-brand">
+          <span class="brand-mark small" aria-hidden="true">H</span
+          ><span>Hostel Management</span>
+        </div>
+        <p class="eyebrow form-eyebrow">WELCOME BACK</p>
+        <h2 id="login-title">Sign in to your account</h2>
+        <p class="form-intro">Enter your details to continue.</p>
+
+        <form id="login-form" novalidate>
+          <label for="role">Account type</label>
+          <select id="role" name="role" required>
+            <option value="STUDENT">Student</option>
+            <option value="ADMIN">Admin</option>
+          </select>
+
+          <label for="email">Email address</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="username"
+            placeholder="you@example.com"
+            required
+          />
+
+          <label for="password">Password</label>
+          <div class="password-wrap">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="Enter your password"
+              required
+              minlength="6"
+            />
+            <button
+              class="show-password"
+              id="toggle-password"
+              type="button"
+              aria-pressed="false"
+              aria-label="Show password"
+            >
+              Show
+            </button>
+          </div>
+
+          <div class="form-options">
+            <label class="remember"
+              ><input id="remember" type="checkbox" />
+              <span>Remember me</span></label
+            >
+            <span class="helper-text">Demo page</span>
+          </div>
+
+          <button class="submit-button" type="submit">
+            Sign in <span aria-hidden="true">→</span>
+          </button>
+          <p
+            id="form-message"
+            class="form-message"
+            role="status"
+            aria-live="polite"
+          ></p>
+        </form>
+
+        <p class="copyright">© Symbiosis Hostel Management System</p>
+      </section>
+    </main>
+  </body>
+</html>
