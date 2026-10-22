@@ -1,157 +1,123 @@
 # Hostel Management System
 
-A Java desktop application for managing hostel accommodation and day-to-day hostel operations. The application uses Java Swing for its user interface, JDBC for database connectivity, and MySQL for persistent storage.
-
-> **Project note:** Keep this README aligned with the version of the source code and database schema used for the final demonstration. Replace the team placeholders before submitting the repository.
+A Java desktop application for managing hostel accommodation and day-to-day operations. The user interface is built with Java Swing, and the application connects to MySQL through JDBC.
 
 ## Features
 
-### Admin
+### Administrator
+
 - Manage hostels, blocks, floors, room types, rooms, and beds.
-- Review student applications and approve or reject applications.
-- Allocate students to available beds and review hostel occupancy.
-- Review student fee-payment submissions and approve or reject them.
-- Create and publish a weekly food menu and configure shared meal timings.
+- Review student applications and approve or reject them.
+- View hostel availability and occupancy, and allocate beds to approved students.
+- Review student-submitted fee-payment references and approve or reject them.
+- Publish the weekly food menu and configure meal timings.
 - Review food feedback and meal-attendance summaries.
-- View room-maintenance complaints, update their status, and add progress or resolution notes.
+- Review room-maintenance complaints, update their status, and add resolution notes.
 
 ### Student
-- Register and view profile and account status.
-- View room, bed, and roommate information when an allocation is active.
-- View fee/payment information and submit a payment reference for Admin verification.
-- View published food menus, submit meal feedback, and respond to dinner-attendance questions.
-- Raise room-maintenance complaints and track their status.
 
-**Payment note:** The payment feature records a transaction/reference ID for Admin review. Do not describe it as a live payment-gateway integration unless a gateway has actually been implemented and tested.
+- Register for an account and view account status and profile details.
+- View assigned hostel, room, bed, and roommate information.
+- View fee information and submit a payment reference for administrator review.
+- View the published food menu, submit meal feedback, and respond to meal-attendance questions.
+- Submit a room-maintenance complaint and view its status.
 
-## Technology Stack
+> Payment records contain a transaction or reference ID for administrator review. The application does not process payments through a payment gateway.
 
-- **Language:** Java
-- **User interface:** Java Swing
+## Technology
+
+- **Language:** Java 21
+- **Desktop user interface:** Java Swing
 - **Database:** MySQL
-- **Connectivity:** JDBC / MySQL Connector/J
+- **Database connectivity:** JDBC with MySQL Connector/J
 - **Build tool:** Maven
-- **IDE used during development:** Visual Studio Code
 
-## Project Structure
+This is the Java desktop application. Its user interface runs as a desktop program; it is not an HTML/CSS/JavaScript website and does not use a Node.js server.
+
+## Project structure
 
 ```text
 HostelManagementSystem/
 ├── database/
-│   └── mysql/             # SQL setup and feature scripts
-├── src/
-│   └── main/
-│       └── java/
-│           └── com/hostelmanagement/
-│               ├── auth/
-│               ├── common/
-│               ├── dao/
-│               ├── model/
-│               ├── service/
-│               └── ui/
+│   └── mysql/                 # MySQL setup and feature SQL files
+├── src/main/java/com/hostelmanagement/
+│   ├── auth/                  # Login and password utilities
+│   ├── common/database/       # MySQL JDBC connection
+│   ├── dao/                   # Database access
+│   ├── model/                 # Data models
+│   ├── service/               # Application operations
+│   └── ui/                    # Swing windows and forms
 ├── pom.xml
-├── README.md
-└── RUN_HOSTEL_MANAGEMENT.command   # Optional macOS launcher, if present
+└── README.md
 ```
 
-Some files may differ as the project evolves. Use the actual repository tree as the final source of truth.
+## Requirements
 
-## Prerequisites
+Install or configure:
 
-Install and configure:
-1. A compatible JDK. The current `pom.xml` specifies Java 21.
-2. MySQL Server and MySQL Workbench (Workbench is optional but useful for running SQL scripts).
-3. Maven, or the Maven integration available in your development environment.
-4. The MySQL Connector/J dependency specified in `pom.xml`.
+1. JDK 21.
+2. MySQL Server.
+3. Maven, or Maven support in your IDE.
+4. MySQL Connector/J, which Maven downloads from the dependency in `pom.xml`.
 
-## Database Setup
+MySQL Workbench is optional, but can be used to inspect and run the SQL files.
+
+## Database setup
 
 1. Start MySQL Server.
-2. Open MySQL Workbench and connect to the MySQL instance used by the project.
-3. Open the SQL scripts in `database/mysql/` and inspect their intended order and database name.
-4. Run the database/schema setup scripts first, followed by any feature-specific scripts that are required by the current version.
-5. Confirm that the expected tables exist before launching the Java application.
+2. Open the SQL files under `database/mysql/` and review their contents and order.
+3. Create the `hostel_management` database and run the schema setup scripts, followed by any feature scripts required by the current source version.
+4. Confirm the tables exist before starting the Java application.
 
-**Important:** Do not blindly re-run destructive SQL statements against a database containing records. Read each script first and back up existing data before schema changes.
+The scripts include schema changes and feature-specific SQL. Review them before running, especially if the database already contains data. Back up existing data before applying schema changes; do not blindly rerun `ALTER TABLE` statements.
 
-## Database Configuration
+## Database configuration
 
-The database connection utility may read connection details from environment variables. Check `MySQLConnection.java` in the current source before configuring the application.
+The JDBC connection utility reads these environment variables:
 
-If the current version uses the following variables, set them in your shell or launch environment:
+- `HOSTEL_DB_URL` — defaults to `jdbc:mysql://127.0.0.1:3306/hostel_management` with local connection options.
+- `HOSTEL_DB_USER` — defaults to `hostel_app`.
+- `HOSTEL_DB_PASSWORD` — required; the application reports an error if it is not set.
 
-```bash
-export HOSTEL_DB_URL="jdbc:mysql://localhost:3306/hostel_management"
-export HOSTEL_DB_USER="your_mysql_username"
-export HOSTEL_DB_PASSWORD="your_mysql_password"
+Set them in the environment used to launch the application. For example, in PowerShell:
+
+```powershell
+$env:HOSTEL_DB_URL = "jdbc:mysql://127.0.0.1:3306/hostel_management?sslMode=DISABLED&allowPublicKeyRetrieval=true&connectTimeout=5000"
+$env:HOSTEL_DB_USER = "your_mysql_username"
+$env:HOSTEL_DB_PASSWORD = "your_mysql_password"
 ```
 
-Replace the example values with your local configuration. Do not commit real passwords, private keys, or other secrets to GitHub. Keep them in local environment settings and ensure secret files are ignored by Git.
+Use your own MySQL credentials. Do not commit real passwords or other secrets to Git.
 
-## Run the Application
+## Run the application
 
-From the project root—the directory containing `pom.xml`—run:
+From the project root—the folder containing `pom.xml`—run:
 
-```bash
+```powershell
 mvn clean compile
-mvn exec:java -Dexec.mainClass=com.hostelmanagement.Main
+mvn exec:java "-Dexec.mainClass=com.hostelmanagement.Main"
 ```
 
-For subsequent runs without cleaning the build, you can normally use:
+The application opens the Swing login window. MySQL must be running, and the database settings must be available in the same environment.
 
-```bash
-mvn exec:java -Dexec.mainClass=com.hostelmanagement.Main
-```
+## Suggested demonstration
 
-If the project includes `RUN_HOSTEL_MANAGEMENT.command`, it can be used as a macOS launcher. Make sure MySQL is running and the database settings are available in the launch environment. Keep the launched Terminal window open while the application is running.
+1. Sign in with an administrator account and review the hostel and room setup.
+2. Review a student application and approve it.
+3. Allocate an available bed and check the occupancy view.
+4. Submit a payment reference as a student and review it as an administrator.
+5. Publish a weekly menu and view it from the student account.
+6. Submit food feedback and meal attendance, then review the administrator summaries.
+7. Submit a maintenance complaint and update its status as an administrator.
 
-## Suggested Demonstration Flow
-
-1. Sign in as Admin and show the hostel hierarchy and room/bed availability.
-2. Review a student application and demonstrate allocation if suitable test data is available.
-3. Open fee verification and explain the distinction between pending and approved payments.
-4. Publish a weekly menu and show it from a Student account.
-5. Submit a food-feedback response and inspect the Admin analytics.
-6. Submit a room complaint as Student and update its status as Admin.
-7. Verify that changes are reflected in the relevant screens after refresh/reload.
-
-Use test accounts and sample data only. Do not expose real student personal data or credentials during the demonstration.
-
-## Diagrams and Report
-
-The project documentation may include:
-- System architecture diagram.
-- ER diagrams for hostel/allocation, fees/payments, food/feedback, and complaints.
-- An EER diagram for user-role specialization, if its assumptions match the database design.
-- The DBMS project report and supporting SQL/query results.
-
-Keep editable `.drawio` source files alongside exported PNG/PDF versions when these are included in the repository. Confirm all keys, foreign keys, and relationship cardinalities against the actual SQL schema before submission.
-
-## Team Contributions
-
-Update this table to reflect the work each member actually completed.
-
-| Team member | Contribution |
-|---|---|
-| Member 1 — replace with name | Replace with actual contribution |
-| Member 2 — replace with name | Replace with actual contribution |
-| Member 3 — replace with name | Replace with actual contribution |
-| Member 4 — replace with name | Replace with actual contribution |
+Use sample accounts and test data for demonstrations. Do not expose real student personal information or passwords.
 
 ## Troubleshooting
 
-- **Database connection error:** Check that MySQL is running, the schema exists, and the URL/user/password match the local configuration.
-- **Maven build error:** Run `mvn clean compile` from the directory containing `pom.xml` and read the first error reported by Maven.
-- **Changes do not appear:** Use the relevant screen's refresh/load control or reopen the screen if that workflow does not refresh automatically.
-- **Login or role issue:** Confirm that the test account exists in the database and has the expected status/role.
+- **MySQL connection error:** Confirm MySQL is running, the `hostel_management` database and tables exist, and the environment variables match your MySQL setup.
+- **Missing password error:** Set `HOSTEL_DB_PASSWORD` in the environment used to launch the application.
+- **Maven build error:** Run Maven from the directory containing `pom.xml` and review the first reported error.
+- **Changes do not appear:** Refresh the relevant screen or reopen it if the screen does not reload automatically.
+- **Login or role issue:** Confirm the account exists in MySQL and has the expected role and account status.
 
-## Maintainers
 
-- Institution: Symbiosis Institute of Technology, Pune
-- Course/project: Java and DBMS Lab — Hostel Management System
-- Team members: Replace with actual names
-- Faculty guide: Replace if required by the course
-
----
-
-Before submission, verify all instructions against the final source code and SQL scripts, replace placeholders, and remove any feature description that is not present in the demonstrated build.
