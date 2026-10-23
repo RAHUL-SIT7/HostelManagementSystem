@@ -42,14 +42,37 @@ public class FeePaymentDAO {
             this.allocated = allocated;
         }
 
-        public long getStudentId() { return studentId; }
-        public String getFullName() { return fullName; }
-        public String getAccountStatus() { return accountStatus; }
-        public String getRoomTypeName() { return roomTypeName; }
-        public BigDecimal getMonthlyFee() { return monthlyFee; }
-        public BigDecimal getApprovedAmount() { return approvedAmount; }
-        public BigDecimal getPendingAmount() { return pendingAmount; }
-        public boolean hasAllocation() { return allocated; }
+        public long getStudentId() {
+            return studentId;
+        }
+
+        public String getFullName() {
+            return fullName;
+        }
+
+        public String getAccountStatus() {
+            return accountStatus;
+        }
+
+        public String getRoomTypeName() {
+            return roomTypeName;
+        }
+
+        public BigDecimal getMonthlyFee() {
+            return monthlyFee;
+        }
+
+        public BigDecimal getApprovedAmount() {
+            return approvedAmount;
+        }
+
+        public BigDecimal getPendingAmount() {
+            return pendingAmount;
+        }
+
+        public boolean hasAllocation() {
+            return allocated;
+        }
 
         public BigDecimal getOutstandingAmount() {
             return monthlyFee.subtract(approvedAmount)
@@ -93,14 +116,37 @@ public class FeePaymentDAO {
             this.submittedAt = submittedAt;
         }
 
-        public long getPaymentId() { return paymentId; }
-        public YearMonth getBillingMonth() { return billingMonth; }
-        public BigDecimal getAmount() { return amount; }
-        public String getTransactionId() { return transactionId; }
-        public LocalDate getPaymentDate() { return paymentDate; }
-        public String getStatus() { return status; }
-        public String getRemarks() { return remarks; }
-        public String getSubmittedAt() { return submittedAt; }
+        public long getPaymentId() {
+            return paymentId;
+        }
+
+        public YearMonth getBillingMonth() {
+            return billingMonth;
+        }
+
+        public BigDecimal getAmount() {
+            return amount;
+        }
+
+        public String getTransactionId() {
+            return transactionId;
+        }
+
+        public LocalDate getPaymentDate() {
+            return paymentDate;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public String getRemarks() {
+            return remarks;
+        }
+
+        public String getSubmittedAt() {
+            return submittedAt;
+        }
     }
 
     public FeeOverview getOverview(long userId, YearMonth billingMonth)

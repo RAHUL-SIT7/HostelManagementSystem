@@ -221,7 +221,9 @@ public class FoodDAO {
     private boolean scheduleExists(Connection con, String mealType) throws SQLException {
         try (PreparedStatement ps = con.prepareStatement("SELECT 1 FROM meal_time_slots WHERE meal_type = ?")) {
             ps.setString(1, mealType);
-            try (ResultSet rs = ps.executeQuery()) { return rs.next(); }
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
         }
     }
 
@@ -403,14 +405,18 @@ public class FoodDAO {
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, day); ps.setString(2, mealType);
             if (excludeId != null) ps.setLong(3, excludeId);
-            try (ResultSet rs = ps.executeQuery()) { return rs.next() ? rs.getLong(1) : null; }
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next() ? rs.getLong(1) : null;
+            }
         }
     }
 
     private boolean menuExists(Connection con, long menuId) throws SQLException {
         try (PreparedStatement ps = con.prepareStatement("SELECT 1 FROM food_menu WHERE menu_id = ?")) {
             ps.setLong(1, menuId);
-            try (ResultSet rs = ps.executeQuery()) { return rs.next(); }
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
         }
     }
 

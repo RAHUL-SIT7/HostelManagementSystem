@@ -265,29 +265,100 @@ public class StudentDashboardDAO {
             this.hasAllocation = hasAllocation;
         }
 
-        public long getUserId() { return userId; }
-        public long getStudentId() { return studentId; }
-        public String getEmail() { return email; }
-        public String getAccountStatus() { return accountStatus; }
-        public String getFullName() { return fullName; }
-        public String getAddress() { return address; }
-        public String getPhone() { return phone; }
-        public String getProfession() { return profession; }
-        public String getInstitutionName() { return institutionName; }
-        public String getOrganizationName() { return organizationName; }
-        public String getDateOfBirth() { return dateOfBirth; }
-        public String getBloodGroup() { return bloodGroup; }
-        public String getGuardianName() { return guardianName; }
-        public String getGuardianPhone() { return guardianPhone; }
-        public String getRegisteredAt() { return registeredAt; }
-        public String getHostelName() { return hostelName; }
-        public String getBlockName() { return blockName; }
-        public String getFloorName() { return floorName; }
-        public String getRoomNumber() { return roomNumber; }
-        public String getBedNumber() { return bedNumber; }
-        public String getRoomTypeName() { return roomTypeName; }
-        public int getCapacity() { return capacity; }
-        public String getMonthlyFee() { return monthlyFee; }
-        public boolean hasAllocation() { return hasAllocation; }
+        public long getUserId() {
+            return userId;
+        }
+
+        public long getStudentId() {
+            return studentId;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public String getAccountStatus() {
+            return accountStatus;
+        }
+
+        public String getFullName() {
+            return fullName;
+        }
+
+        public String getAddress() {
+            return address;
+        }
+
+        public String getPhone() {
+            return phone;
+        }
+
+        public String getProfession() {
+            return profession;
+        }
+
+        public String getInstitutionName() {
+            return institutionName;
+        }
+
+        public String getOrganizationName() {
+            return organizationName;
+        }
+
+        public String getDateOfBirth() {
+            return dateOfBirth;
+        }
+
+        public String getBloodGroup() {
+            return bloodGroup;
+        }
+
+        public String getGuardianName() {
+            return guardianName;
+        }
+
+        public String getGuardianPhone() {
+            return guardianPhone;
+        }
+
+        public String getRegisteredAt() {
+            return registeredAt;
+        }
+
+        public String getHostelName() {
+            return hostelName;
+        }
+
+        public String getBlockName() {
+            return blockName;
+        }
+
+        public String getFloorName() {
+            return floorName;
+        }
+
+        public String getRoomNumber() {
+            return roomNumber;
+        }
+
+        public String getBedNumber() {
+            return bedNumber;
+        }
+
+        public String getRoomTypeName() {
+            return roomTypeName;
+        }
+
+        public int getCapacity() {
+            return capacity;
+        }
+
+        public String getMonthlyFee() {
+            return monthlyFee;
+        }
+
+        public boolean hasAllocation() {
+            return hasAllocation;
+        }
     }
 }

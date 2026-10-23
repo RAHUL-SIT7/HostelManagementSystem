@@ -54,17 +54,49 @@ public class AdminPaymentDAO {
             this.submittedAt = submittedAt;
         }
 
-        public long getPaymentId() { return paymentId; }
-        public long getStudentId() { return studentId; }
-        public String getStudentName() { return studentName; }
-        public String getEmail() { return email; }
-        public YearMonth getBillingMonth() { return billingMonth; }
-        public java.math.BigDecimal getAmount() { return amount; }
-        public String getTransactionId() { return transactionId; }
-        public LocalDate getPaymentDate() { return paymentDate; }
-        public String getStatus() { return status; }
-        public String getRemarks() { return remarks; }
-        public String getSubmittedAt() { return submittedAt; }
+        public long getPaymentId() {
+            return paymentId;
+        }
+
+        public long getStudentId() {
+            return studentId;
+        }
+
+        public String getStudentName() {
+            return studentName;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public YearMonth getBillingMonth() {
+            return billingMonth;
+        }
+
+        public java.math.BigDecimal getAmount() {
+            return amount;
+        }
+
+        public String getTransactionId() {
+            return transactionId;
+        }
+
+        public LocalDate getPaymentDate() {
+            return paymentDate;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public String getRemarks() {
+            return remarks;
+        }
+
+        public String getSubmittedAt() {
+            return submittedAt;
+        }
     }
 
     public List<PaymentRecord> getPayments(String statusFilter)
